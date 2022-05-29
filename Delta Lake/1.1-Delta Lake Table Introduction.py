@@ -4,6 +4,14 @@
 # MAGIC Delta Lake is an open source storage layer that brings reliability to data lakes. Delta Lake provides ACID transactions, scalable metadata handling, and unifies streaming and batch data processing. Delta Lake runs on top of your existing data lake and is fully compatible with Apache Spark APIs. Delta Lake on Databricks allows you to configure Delta Lake based on your workload patterns.
 # MAGIC 
 # MAGIC * Delta Lake is not a data warehouse
+# MAGIC 
+# MAGIC In this demo we will see delta lake basic concepts:
+# MAGIC 1. How to create table?
+# MAGIC 1. How to insert data?
+# MAGIC 1. How to query data?
+# MAGIC 1. How to check table meta data?
+# MAGIC 1. How to group & aggregate data?
+# MAGIC 1. How to drop table & database?
 
 # COMMAND ----------
 
@@ -115,6 +123,18 @@ display(dbutils.fs.ls('dbfs:/user/hive/warehouse/db_demo.db/employee'))
 # MAGIC FROM employee
 # MAGIC GROUP BY dept
 # MAGIC ORDER BY average_salary;
+
+# COMMAND ----------
+
+# MAGIC %sql 
+# MAGIC -- dropping table
+# MAGIC DROP TABLE employee;
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC -- drop database
+# MAGIC DROP DATABASE DB_DEMO;
 
 # COMMAND ----------
 

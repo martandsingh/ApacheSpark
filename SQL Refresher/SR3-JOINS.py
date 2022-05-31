@@ -10,7 +10,7 @@
 # MAGIC 1. Right outer join
 # MAGIC 1. Full outer join
 # MAGIC 1. Cross join
-# MAGIC ![my_test_image](files/tables/images/join_demo.png)
+# MAGIC ![SQL_JOIN](https://raw.githubusercontent.com/martandsingh/images/master/join_demo.png)
 
 # COMMAND ----------
 
@@ -23,7 +23,7 @@
 # MAGIC _initial_setup command will run our setup notebook where we are creating DB_DEMO database & 3 table (employee, department, club). employee table include employee details including department id(dept_id) & club id (club_id) which are the Foreign key related with department & club table respectively. Below entity diagram shows the relation between tables.
 # MAGIC 
 # MAGIC 
-# MAGIC ![my_test_image](files/tables/images/entity_drawio__2_.png)
+# MAGIC ![my_test_image](https://raw.githubusercontent.com/martandsingh/images/master/entity_diag.png)
 
 # COMMAND ----------
 

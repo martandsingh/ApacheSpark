@@ -20,7 +20,7 @@
 # MAGIC SELECT * FROM TABLE
 # MAGIC 
 # MAGIC 
-# MAGIC ![my_test_image](files/tables/images/view_demo.png)
+# MAGIC ![SQL_JOINS](https://raw.githubusercontent.com/martandsingh/images/master/view-demo.png)
 
 # COMMAND ----------
 
@@ -80,16 +80,14 @@
 
 # COMMAND ----------
 
-# MAGIC %sql
-# MAGIC -- You can drop views using DROP VIEW
-# MAGIC DROP VIEW VW_GET_EMPLOYEES
+
 
 # COMMAND ----------
 
 # MAGIC %md
 # MAGIC Now let's create a temp view. How is it different than a regular view?
 # MAGIC 
-# MAGIC Well a temp view will be available only for your current session. If you restart your cluster, you will loose your temp view. It will not affect any physical table or data.
+# MAGIC Well a temp view will be available only for your current session. If you restart your session, you will loose your temp view. It will not affect any physical table or data.
 
 # COMMAND ----------
 
@@ -109,6 +107,12 @@
 
 # MAGIC %sql
 # MAGIC SELECT * FROM TEMP_VW_GET_EMPLOYEES
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC -- You can drop views using DROP VIEW
+# MAGIC DROP VIEW VW_GET_EMPLOYEES
 
 # COMMAND ----------
 

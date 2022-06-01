@@ -23,4 +23,5 @@ email: martandsays@gmail.com
 ### SETUP folder
 you will see initial_setup & clean_up notebooks called in every notebooks. It is mandatory to run both the scripts in defined order. initial script will create all the mandatory tables & database for the demo. After you finish your notebook, execute clean up notebook, it will clean all the db objects.
 
-![SQL](https://raw.githubusercontent.com/martandsingh/images/master/sql.png)
+
+![Databricks_Logo](https://user-images.githubusercontent.com/32331579/171388196-c06e0548-361e-448e-b158-2fa0a17fee6a.jpg)

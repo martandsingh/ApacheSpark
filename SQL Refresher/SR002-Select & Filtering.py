@@ -1,9 +1,19 @@
 # Databricks notebook source
+# MAGIC %md
+# MAGIC ### What is filtering?
+# MAGIC Selecting a subset of data based on some business logic is called filtering.
+# MAGIC e.g. You have data for multiple countries, then you may want to select data only for one particular country or city or both.
+# MAGIC 
+# MAGIC ![Filtering](https://raw.githubusercontent.com/martandsingh/images/master/filtering.png)
+
+# COMMAND ----------
+
 # MAGIC %run ../SETUP/_initial_setup
 
 # COMMAND ----------
 
 # MAGIC %sql 
+# MAGIC -- * astrix will select all the columns and rows. As a big data engineer, you should avoid this because in real life scenario your table will have billions of records which you do not want to fetch frequently.
 # MAGIC SELECT * FROM club;
 
 # COMMAND ----------
@@ -18,7 +28,7 @@
 
 # COMMAND ----------
 
-# MAGIC %sql -- Projection: select only few columns
+# MAGIC %sql -- Projection: select only few columns. this is a prefferd practice. Only select the columns which you need. It will optimize your query.
 # MAGIC SELECT
 # MAGIC   firstname,
 # MAGIC   lastname,
@@ -28,7 +38,8 @@
 
 # COMMAND ----------
 
-# MAGIC %sql -- SELECT top 5 records
+# MAGIC %sql 
+# MAGIC -- SELECT top 5 records. 
 # MAGIC SELECT
 # MAGIC   firstname,
 # MAGIC   lastname,
@@ -40,7 +51,8 @@
 
 # COMMAND ----------
 
-# MAGIC %sql -- apply filters using WHERE keyword choose all the employee of department DEP001
+# MAGIC %sql 
+# MAGIC -- apply filters using WHERE keyword choose all the employee of department DEP001
 # MAGIC SELECT
 # MAGIC   *
 # MAGIC FROM
@@ -50,7 +62,8 @@
 
 # COMMAND ----------
 
-# MAGIC %sql -- apply filters using WHERE keyword choose all the employee of department DEP001 & club C1
+# MAGIC %sql 
+# MAGIC -- apply filters using WHERE keyword choose all the employee of department DEP001 & club C1
 # MAGIC SELECT
 # MAGIC   *
 # MAGIC FROM

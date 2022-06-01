@@ -39,7 +39,19 @@
 # MAGIC   accomodation DECIMAL(10, 2),
 # MAGIC   food DECIMAL(10, 2),
 # MAGIC   extra DECIMAL(10, 2)
-# MAGIC )
+# MAGIC );
+# MAGIC CREATE TABLE supplier_india
+# MAGIC (
+# MAGIC   supp_id VARCHAR(10),
+# MAGIC   supp_name VARCHAR(50),
+# MAGIC   city VARCHAR(50)
+# MAGIC );
+# MAGIC CREATE TABLE supplier_nepal
+# MAGIC (
+# MAGIC   supp_id VARCHAR(10),
+# MAGIC   supp_name VARCHAR(50),
+# MAGIC   city VARCHAR(50)
+# MAGIC );
 
 # COMMAND ----------
 
@@ -51,6 +63,8 @@
 # MAGIC print('Success: table meal created')
 # MAGIC print('Success: table drink created')
 # MAGIC print('Success: table emp_salary created')
+# MAGIC print('Success: table supplier_india created')
+# MAGIC print('Success: table supplier_nepal created')
 
 # COMMAND ----------
 
@@ -61,6 +75,8 @@
 # MAGIC TRUNCATE TABLE meal;
 # MAGIC TRUNCATE TABLE drink;
 # MAGIC TRUNCATE TABLE emp_salary;
+# MAGIC TRUNCATE TABLE supplier_india;
+# MAGIC TRUNCATE TABLE supplier_nepal;
 
 # COMMAND ----------
 
@@ -71,6 +87,8 @@
 # MAGIC print('Success: table meal truncated')
 # MAGIC print('Success: table drink truncated')
 # MAGIC print('Success: table emp_salary truncated')
+# MAGIC print('Success: table supplier_india truncated')
+# MAGIC print('Success: table supplier_nepal truncated')
 
 # COMMAND ----------
 
@@ -136,7 +154,25 @@
 # MAGIC ('EMP004', 15000.99, 2670.50, 3500, 3580, 7500),
 # MAGIC ('EMP005', 25600.99, 2120.50, 3000, 3589, 6500),
 # MAGIC ('EMP006', 67000.99, 2760, 4000, 3590, 5500),
-# MAGIC ('EMP007', 89000.99, 2000, 4000, 3511, 5500)
+# MAGIC ('EMP007', 89000.99, 2000, 4000, 3511, 5500);
+# MAGIC 
+# MAGIC INSERT INTO supplier_india
+# MAGIC (supp_id, supp_name, city)
+# MAGIC VALUES
+# MAGIC ('SI001', 'Martand Singh', 'New Delhi'),
+# MAGIC ('SI002', 'Gaurav Chandawani', 'Mumbai'),
+# MAGIC ('SI003', 'Shweta Gupta', 'U.P'),
+# MAGIC ('SI004', 'Naresh Chawla', 'Punjab');
+# MAGIC 
+# MAGIC INSERT INTO supplier_nepal
+# MAGIC (supp_id, supp_name, city)
+# MAGIC VALUES
+# MAGIC ('SN001', 'Himal Gurung', 'Kathmandu'),
+# MAGIC ('SN002', 'Naina Shah', 'Pokhara'),
+# MAGIC ('SN003', 'Vicky Magar', 'Gorkha'),
+# MAGIC ('SN004', 'Martand Singh', 'Surkhet'),
+# MAGIC ('SN005', 'Gaurav Chandawani', 'Thankot'),
+# MAGIC ('SN006', 'Barkha Tiwari', 'Butwal');
 
 # COMMAND ----------
 

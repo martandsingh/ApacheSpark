@@ -25,8 +25,6 @@
 # COMMAND ----------
 
 # MAGIC %sql -- here we are creating an external table from CSV file which is stored in my databricks storage. below command may not run in your system as you may not have same file at the same location. So you can upload a CSV file (in my case it was tab delimited) in your databricks storage and update the path and columns accordingly. th csv file which I used is available at : https://raw.githubusercontent.com/martandsingh/datasets/master/bank-full.csv
-# MAGIC 
-# MAGIC 
 # MAGIC DROP TABLE IF EXISTS bank_report;
 # MAGIC CREATE EXTERNAL TABLE bank_report (
 # MAGIC   age STRING,
@@ -54,19 +52,19 @@
 
 # COMMAND ----------
 
-# MAGIC %sql
-# MAGIC -- now let's select top 100 records from our external table
-# MAGIC SELECT * FROM bank_report LIMIT 100;
+# MAGIC %sql -- now let's select top 100 records from our external table
+# MAGIC SELECT
+# MAGIC   *
+# MAGIC FROM
+# MAGIC   bank_report
+# MAGIC LIMIT
+# MAGIC   100;
 
 # COMMAND ----------
 
-# MAGIC %sql
-# MAGIC 
-# MAGIC -- We can also create external table without defining schema. 
-# MAGIC 
+# MAGIC %sql -- We can also create external table without defining schema.
 # MAGIC DROP TABLE IF EXISTS bank_report_nc;
-# MAGIC CREATE EXTERNAL TABLE bank_report_nc 
-# MAGIC USING CSV OPTIONS (
+# MAGIC CREATE EXTERNAL TABLE bank_report_nc USING CSV OPTIONS (
 # MAGIC   path "/FileStore/tables/dataset/*.csv",
 # MAGIC   delimiter ";",
 # MAGIC   header "true"
@@ -79,9 +77,7 @@
 
 # COMMAND ----------
 
-# MAGIC %sql 
-# MAGIC -- creating an external table in delta location. We are getting a subset of our external table bank_report and saving the output to a new delta table bank_report_del.
-# MAGIC 
+# MAGIC %sql -- creating an external table in delta location. We are getting a subset of our external table bank_report and saving the output to a new delta table bank_report_del.
 # MAGIC DROP TABLE IF EXISTS bank_report_del;
 # MAGIC CREATE TABLE bank_report_del USING DELTA AS
 # MAGIC SELECT
@@ -111,14 +107,9 @@ display(dbutils.fs.ls('/delta/bank_users_1500'))
 
 # COMMAND ----------
 
-# MAGIC %sql 
-# MAGIC --We are creating an external table using delta location. We have saved parquet file in the given delta location.
-# MAGIC 
+# MAGIC %sql --We are creating an external table using delta location. We have saved parquet file in the given delta location.
 # MAGIC DROP TABLE IF EXISTS bank_report_parq;
-# MAGIC CREATE  EXTERNAL TABLE bank_report_parq 
-# MAGIC USING DELTA
-# MAGIC LOCATION  "/delta/bank_users_1500/"
-# MAGIC         
+# MAGIC CREATE EXTERNAL TABLE bank_report_parq USING DELTA LOCATION "/delta/bank_users_1500/"
 
 # COMMAND ----------
 

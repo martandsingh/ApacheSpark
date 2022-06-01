@@ -25,23 +25,31 @@
 
 # COMMAND ----------
 
-# MAGIC %sql
-# MAGIC -- Lets use join first. This will return full name of all the employees who are member of a valid club(existing club).
-# MAGIC SELECT concat(E.firstname, ' ', E.lastname) AS FullName
-# MAGIC FROM employee E
-# MAGIC INNER JOIN club C
-# MAGIC ON E.club_id = C.club_id
-# MAGIC ORDER BY FullName
+# MAGIC %sql -- Lets use join first. This will return full name of all the employees who are member of a valid club(existing club).
+# MAGIC SELECT
+# MAGIC   concat(E.firstname, ' ', E.lastname) AS FullName
+# MAGIC FROM
+# MAGIC   employee E
+# MAGIC   INNER JOIN club C ON E.club_id = C.club_id
+# MAGIC ORDER BY
+# MAGIC   FullName
 
 # COMMAND ----------
 
-# MAGIC %sql
-# MAGIC -- other way to get same result using sub query or inner query. Below query will return exactly same result as above. The query inside the paranthesis (SELECT club_id FROM club) is your sub query. First this query is executing and providing a resultset which later will be used in WHERE condition for the parent query.
-# MAGIC 
-# MAGIC SELECT concat(E.firstname, ' ', E.lastname) AS FullName
-# MAGIC FROM employee E
-# MAGIC WHERE club_id IN (SELECT club_id FROM club)
-# MAGIC ORDER BY FullName
+# MAGIC %sql -- other way to get same result using sub query or inner query. Below query will return exactly same result as above. The query inside the paranthesis (SELECT club_id FROM club) is your sub query. First this query is executing and providing a resultset which later will be used in WHERE condition for the parent query.
+# MAGIC SELECT
+# MAGIC   concat(E.firstname, ' ', E.lastname) AS FullName
+# MAGIC FROM
+# MAGIC   employee E
+# MAGIC WHERE
+# MAGIC   club_id IN (
+# MAGIC     SELECT
+# MAGIC       club_id
+# MAGIC     FROM
+# MAGIC       club
+# MAGIC   )
+# MAGIC ORDER BY
+# MAGIC   FullName
 
 # COMMAND ----------
 
@@ -52,33 +60,46 @@
 
 # COMMAND ----------
 
-# MAGIC %sql 
-# MAGIC SELECT ES.basic_salary FROM 
-# MAGIC employee E INNER JOIN emp_salary ES ON E.empcode=  ES.empcode WHERE  dept_id = 'DEP001'
+# MAGIC %sql
+# MAGIC SELECT
+# MAGIC   ES.basic_salary
+# MAGIC FROM
+# MAGIC   employee E
+# MAGIC   INNER JOIN emp_salary ES ON E.empcode = ES.empcode
+# MAGIC WHERE
+# MAGIC   dept_id = 'DEP001'
 
 # COMMAND ----------
 
-# MAGIC %sql
-# MAGIC -- INNER JOIN
-# MAGIC SELECT ROUND(AVG(ES.basic_salary), 2) AS AVG_BASIC_SALARY
-# MAGIC from employee E
-# MAGIC INNER JOIN department D
-# MAGIC ON E.dept_id = D.dept_id
-# MAGIC INNER JOIN emp_salary ES
-# MAGIC ON E.empcode = ES.empcode
-# MAGIC GROUP BY D.dept_name
-# MAGIC HAVING D.dept_name = 'IT'
+# MAGIC %sql -- INNER JOIN
+# MAGIC SELECT
+# MAGIC   ROUND(AVG(ES.basic_salary), 2) AS AVG_BASIC_SALARY
+# MAGIC from
+# MAGIC   employee E
+# MAGIC   INNER JOIN department D ON E.dept_id = D.dept_id
+# MAGIC   INNER JOIN emp_salary ES ON E.empcode = ES.empcode
+# MAGIC GROUP BY
+# MAGIC   D.dept_name
+# MAGIC HAVING
+# MAGIC   D.dept_name = 'IT'
 
 # COMMAND ----------
 
-# MAGIC %sql
-# MAGIC -- Above task using inner query or subquery
-# MAGIC SELECT ROUND(AVG(ES.basic_salary), 2) AS AVG_BASIC_SALARY
-# MAGIC from employee E
-# MAGIC INNER JOIN emp_salary ES
-# MAGIC ON E.empcode = ES.empcode
-# MAGIC WHERE E.dept_id = ( SELECT dept_id FROM department WHERE dept_name = 'IT')
-# MAGIC  
+# MAGIC %sql -- Above task using inner query or subquery
+# MAGIC SELECT
+# MAGIC   ROUND(AVG(ES.basic_salary), 2) AS AVG_BASIC_SALARY
+# MAGIC from
+# MAGIC   employee E
+# MAGIC   INNER JOIN emp_salary ES ON E.empcode = ES.empcode
+# MAGIC WHERE
+# MAGIC   E.dept_id = (
+# MAGIC     SELECT
+# MAGIC       dept_id
+# MAGIC     FROM
+# MAGIC       department
+# MAGIC     WHERE
+# MAGIC       dept_name = 'IT'
+# MAGIC   )
 
 # COMMAND ----------
 

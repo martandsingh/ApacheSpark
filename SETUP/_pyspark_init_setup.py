@@ -5,10 +5,12 @@
 CANCER_FILE_NAME='cancer.csv'
 UNECE_FILE_NAME='unece.json'
 USED_CAR_FILE_NAME='used_cars_nested.json'
+MALL_CUSTOMER_FILE_NAME = 'Mall_Customers.csv'
 DBFS_DATASET_LOCATION = '/FileStore/datasets/'
 CANCER_CSV_PATH = 'https://raw.githubusercontent.com/martandsingh/datasets/master/' + CANCER_FILE_NAME # CSV
 UNECE_JSON_PATH = 'https://raw.githubusercontent.com/martandsingh/datasets/master/' + UNECE_FILE_NAME # simple JSON
 USED_CAR_JSON_PATH = 'https://raw.githubusercontent.com/martandsingh/datasets/master/' + USED_CAR_FILE_NAME # complex JSON
+MALL_CUSTOMER_PATH='https://raw.githubusercontent.com/martandsingh/datasets/master/' + MALL_CUSTOMER_FILE_NAME
 DBFS_PARQUET_FILE = '/FileStore/datasets/USED_CAR_PARQUET/'
 DA = {
     "CANCER_FILE_NAME": CANCER_FILE_NAME,
@@ -18,7 +20,9 @@ DA = {
     "UNECE_JSON_PATH": UNECE_JSON_PATH,
     "USED_CAR_JSON_PATH": USED_CAR_JSON_PATH,
     "DBFS_DATASET_LOCATION": DBFS_DATASET_LOCATION,
-    "DBFS_PARQUET_FILE": DBFS_PARQUET_FILE
+    "DBFS_PARQUET_FILE": DBFS_PARQUET_FILE,
+    "MALL_CUSTOMER_FILE_NAME": MALL_CUSTOMER_FILE_NAME,
+    "MALL_CUSTOMER_PATH": MALL_CUSTOMER_PATH
 }
 
 

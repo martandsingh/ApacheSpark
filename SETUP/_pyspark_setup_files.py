@@ -22,6 +22,7 @@ dbutils.fs.mkdirs('/FileStore/datasets')
 cancer_file= dbutils.widgets.get("DBFS_DATASET_LOCATION")+dbutils.widgets.get("CANCER_FILE_NAME")
 unece_file = dbutils.widgets.get("DBFS_DATASET_LOCATION")+dbutils.widgets.get("UNECE_FILE_NAME")
 used_car_file=dbutils.widgets.get("DBFS_DATASET_LOCATION")+dbutils.widgets.get("USED_CAR_FILE_NAME")
+mall_customer_file=dbutils.widgets.get("DBFS_DATASET_LOCATION")+dbutils.widgets.get("MALL_CUSTOMER_FILE_NAME")
 print(cancer_file)
 print(unece_file)
 print(used_car_file)
@@ -39,14 +40,41 @@ dbutils.fs.cp(dbutils.widgets.get("UNECE_JSON_PATH"),  unece_file)
 
 dbutils.fs.cp(dbutils.widgets.get("USED_CAR_JSON_PATH"), used_car_file)
 
+dbutils.fs.cp(dbutils.widgets.get("MALL_CUSTOMER_PATH"), mall_customer_file)
 
+
+# COMMAND ----------
+
+from pyspark.sql.functions import explode, col
 
 # COMMAND ----------
 
 parquet_path = dbutils.widgets.get("DBFS_PARQUET_FILE")
 print("Writing parquet file to "+ parquet_path)
-df = spark.read.option("header", "true").csv(cancer_file)
-df.write.mode("overwrite").parquet(parquet_path)
+df = spark \
+    .read \
+    .option("multiline", "true")\
+    .json(used_car_file)
+
+df_exploded = df \
+            .withColumn("usedCars", explode(df["usedCars"]))
+
+df_clean = df_exploded \
+            .withColumn("vehicle_type", col("usedCars")["@type"])\
+            .withColumn("body_type", col("usedCars")["bodyType"])\
+            .withColumn("brand_name", col("usedCars")["brand"]["name"])\
+            .withColumn("color", col("usedCars")["color"])\
+            .withColumn("description", col("usedCars")["description"])\
+            .withColumn("model", col("usedCars")["model"])\
+            .withColumn("manufacturer", col("usedCars")["manufacturer"])\
+            .withColumn("ad_title", col("usedCars")["name"])\
+            .withColumn("currency", col("usedCars")["priceCurrency"])\
+            .withColumn("seller_location", col("usedCars")["sellerLocation"])\
+            .withColumn("displacement", col("usedCars")["vehicleEngine"]["engineDisplacement"])\
+            .withColumn("transmission", col("usedCars")["vehicleTransmission"])\
+            .withColumn("price", col("usedCars")["price"]) \
+            .drop("usedCars")
+df_clean.write.mode("overwrite").parquet(parquet_path)
 print("Parquet file is read.")
 
 # COMMAND ----------

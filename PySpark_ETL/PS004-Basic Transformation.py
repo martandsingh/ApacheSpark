@@ -122,11 +122,11 @@ display(df_limit)
 from pyspark.sql.functions import concat_ws, upper
 
 df_processed = df_raw \
-            .withColumn("full_name", concat_ws(' ', col("brand_name"), col("model")) ) \
-            .select("full_name", "price")\
-            .limit(5)
+            .withColumn("full_name", concat_ws(' ', col("brand_name"), col("model")) ) 
+            
             
 display(df_processed)
+# You can see the full_name column added to the dataframe (scroll right).
 
 # COMMAND ----------
 
@@ -150,8 +150,8 @@ display(df_processed.limit(5))
 
 # COMMAND ----------
 
-display(df_raw.drop("vehicle_type", "body_type", "price", "currency"))
-# so here we used drop to delete 4 columns. But there is one very interesting thing with spark dataframe. Spark dataframes are immutable. This means whenever you perform any transformation in your dataset, it creates a new dataset. This mean dropping those 4 columns will generate a new dataframe, it will not delete those columns from the original dataframe(df_raw). let try displa(df_raw) in next cell.
+display(df_raw.drop("description", "ad_title", "seller_location"))
+# so here we used drop to delete few columns. But there is one very interesting thing with spark dataframe. Spark dataframes are immutable. This means whenever you perform any transformation in your dataset, it creates a new dataset. This mean dropping those columns will generate a new dataframe, it will not delete those columns from the original dataframe(df_raw). let try displa(df_raw) in next cell.
 
 # COMMAND ----------
 
@@ -162,8 +162,8 @@ display(df_raw.limit(4))
 # COMMAND ----------
 
 # thats why we will create a new dataframe 
-df_row_removed = df_raw.drop("vehicle_type", "body_type", "price", "currency")
-df_row_removed.printSchema() # now this dataframe will not include dropped columns.
+df_processed = df_raw.drop("description", "ad_title", "seller_location")
+df_processed.printSchema() # now this dataframe will not include dropped columns.
 
 # COMMAND ----------
 
@@ -174,7 +174,7 @@ df_row_removed.printSchema() # now this dataframe will not include dropped colum
 # COMMAND ----------
 
 # Lets select all the cars with body_type as SUV. Only select brand_name, body_type, price, displacement
-df_SUV = df_raw \
+df_SUV = df_processed \
         .filter(col("body_type")== "SUV")\
         .select("brand_name", "body_type", "price", "displacement")
 
@@ -199,7 +199,7 @@ display(df_SUV)
 from pyspark.sql.functions import when, regexp_replace
 
 # we are adding a new column "power" which is being calculated using displacement. displacement contains cc. So first we will use regexp_replace to replace text cc. i.e. 100cc -> 100, 800cc -> 800. Then we will use "when" to perform conditional check.
-df_power = df_raw \
+df_power = df_processed \
         .withColumn("power", 
                     when(regexp_replace(df_raw.displacement, "cc", "") < 1500, "LOW")
                     .when(( regexp_replace(df_raw.displacement, "cc", "") >= 1500) & (df_raw.displacement < 2500),  "MEDIUM")
@@ -227,7 +227,7 @@ display(df_power)
 # COMMAND ----------
 
 # Let's see one more example. But this time we will use 2 filter conditions. Select all white suzuki cars. 
-df_suz_wh = df_raw.filter( (col("brand_name")=="Suzuki") & (col("color")=="White") )
+df_suz_wh = df_processed.filter( (col("brand_name")=="Suzuki") & (col("color")=="White") )
 display(df_suz_wh)
 # we can see our resultset only include White Suzuki. 
 
@@ -235,7 +235,7 @@ display(df_suz_wh)
 
 # I want to buy a car, but I have one condition. It should be either Honda or Suzuki. let's write the query. Here we will use OR condition as I have two options Honda & Suzuki. Any one of them is acceptable. Keep in mind comparison is always case sensitive. Honda is different then honda. So col("brand_name") == "Honda" & col("brand_name") == "honda" will produce different resultset. Try this in your assignment.
 
-df_car = df_raw.filter( (col("brand_name") == "Honda") | (col("brand_name") == "Suzuki" ) )
+df_car = df_processed.filter( (col("brand_name") == "Honda") | (col("brand_name") == "Suzuki" ) )
 display(df_car)
 
 # COMMAND ----------
@@ -251,7 +251,7 @@ display(df_car)
 from pyspark.sql.functions import upper
 
 # I added upper function & if you noticed, I changed the case of "Honda" to "honda". It is still giving me same result. The query will convert both side of comparison string to upper case and then compare. In this way you guarantee that both sides will always have same case. you can use lower function also for this.
-df_car = df_raw.filter( (upper(col("brand_name")) == "honda".upper() ) | ( upper(col("brand_name")) == "Suzuki".upper() ) )
+df_car = df_processed.filter( (upper(col("brand_name")) == "honda".upper() ) | ( upper(col("brand_name")) == "Suzuki".upper() ) )
 display(df_car)
 
 # COMMAND ----------
@@ -264,7 +264,7 @@ display(df_car)
 
 # lets categorize our data using SQL expression.
 from pyspark.sql.functions import expr
-df_categorized_expr = df_raw \
+df_categorized_expr = df_processed \
                        .withColumn("power", expr('''
                            CASE WHEN displacement < 1500 THEN "LOW"
                            WHEN displacement >= 1500 AND displacement < 2500 THEN "MEDIUM"

@@ -54,7 +54,7 @@ display(df.limit(4))
 
 # COMMAND ----------
 
-from pyspark.sql.functions import col
+from pyspark.sql.functions import col, length
 from datetime import datetime
 
 # COMMAND ----------
@@ -66,7 +66,7 @@ def get_column_types(df_source):
         dict_types[column.name] = str(column.dataType)
     return dict_types
            
-# Return dictionary including column and null values
+# Return dictionary with missing columns & count
 def get_null_check(df_source):
     list_cols = df_source.columns
     dict_null = {}
@@ -251,7 +251,8 @@ dqc_pipeline(df)
 
 # COMMAND ----------
 
-
+# MAGIC %sql
+# MAGIC DROP DATABASE DB_DQC CASCADE;
 
 # COMMAND ----------
 

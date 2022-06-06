@@ -12,6 +12,9 @@ UNECE_JSON_PATH = 'https://raw.githubusercontent.com/martandsingh/datasets/maste
 USED_CAR_JSON_PATH = 'https://raw.githubusercontent.com/martandsingh/datasets/master/' + USED_CAR_FILE_NAME # complex JSON
 MALL_CUSTOMER_PATH='https://raw.githubusercontent.com/martandsingh/datasets/master/' + MALL_CUSTOMER_FILE_NAME
 DBFS_PARQUET_FILE = '/FileStore/datasets/USED_CAR_PARQUET/'
+HOUSE_PRICE_FILE = 'missing_val_dataset.csv'
+HOUSE_PRICE_PATH = 'https://raw.githubusercontent.com/martandsingh/datasets/master/' + HOUSE_PRICE_FILE
+
 DA = {
     "CANCER_FILE_NAME": CANCER_FILE_NAME,
     "UNECE_FILE_NAME": UNECE_FILE_NAME,
@@ -22,7 +25,9 @@ DA = {
     "DBFS_DATASET_LOCATION": DBFS_DATASET_LOCATION,
     "DBFS_PARQUET_FILE": DBFS_PARQUET_FILE,
     "MALL_CUSTOMER_FILE_NAME": MALL_CUSTOMER_FILE_NAME,
-    "MALL_CUSTOMER_PATH": MALL_CUSTOMER_PATH
+    "MALL_CUSTOMER_PATH": MALL_CUSTOMER_PATH,
+    "HOUSE_PRICE_FILE": HOUSE_PRICE_FILE,
+    "HOUSE_PRICE_PATH": HOUSE_PRICE_PATH
 }
 
 

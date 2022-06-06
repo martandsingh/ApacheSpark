@@ -23,6 +23,8 @@ cancer_file= dbutils.widgets.get("DBFS_DATASET_LOCATION")+dbutils.widgets.get("C
 unece_file = dbutils.widgets.get("DBFS_DATASET_LOCATION")+dbutils.widgets.get("UNECE_FILE_NAME")
 used_car_file=dbutils.widgets.get("DBFS_DATASET_LOCATION")+dbutils.widgets.get("USED_CAR_FILE_NAME")
 mall_customer_file=dbutils.widgets.get("DBFS_DATASET_LOCATION")+dbutils.widgets.get("MALL_CUSTOMER_FILE_NAME")
+house_price_file=dbutils.widgets.get("DBFS_DATASET_LOCATION")+dbutils.widgets.get("HOUSE_PRICE_FILE")
+
 print(cancer_file)
 print(unece_file)
 print(used_car_file)
@@ -41,6 +43,8 @@ dbutils.fs.cp(dbutils.widgets.get("UNECE_JSON_PATH"),  unece_file)
 dbutils.fs.cp(dbutils.widgets.get("USED_CAR_JSON_PATH"), used_car_file)
 
 dbutils.fs.cp(dbutils.widgets.get("MALL_CUSTOMER_PATH"), mall_customer_file)
+
+dbutils.fs.cp(dbutils.widgets.get("HOUSE_PRICE_PATH"), house_price_file)
 
 
 # COMMAND ----------

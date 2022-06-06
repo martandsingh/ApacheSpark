@@ -240,6 +240,11 @@ dqc_pipeline(df)
 
 # COMMAND ----------
 
+# MAGIC %sql
+# MAGIC SELECT dqc_name, COUNT(dqc_value) FROM data_profiling WHERE (dqc_value) > 1 GROUP BY dqc_name 
+
+# COMMAND ----------
+
 # MAGIC %md
 # MAGIC ### What we will do?
 # MAGIC We are trying to profile our data which mean we are trying to record table statistic so that we can compare it later with post transformation data.

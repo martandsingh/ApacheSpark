@@ -49,6 +49,10 @@
 
 # COMMAND ----------
 
+# MAGIC %run ../SETUP/_pyspark_init_setup
+
+# COMMAND ----------
+
 df_ol = spark.read.option("header", "true").csv("/FileStore/datasets/sales/orderlist.csv")
 df_od = spark.read.option("header", "true").csv("/FileStore/datasets/sales/orderdetails.csv")
 df_st = spark.read.option("header", "true").csv("/FileStore/datasets/sales/salestarget.csv")
@@ -215,4 +219,4 @@ display(df_final_target.groupBy("Category", "TargetAcheived").count().orderBy("C
 
 # COMMAND ----------
 
-
+# MAGIC %run ../SETUP/_pyspark_clean_up

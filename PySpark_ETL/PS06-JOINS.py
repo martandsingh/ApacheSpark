@@ -147,10 +147,6 @@ display(df_left_outer)
 
 # COMMAND ----------
 
-
-
-# COMMAND ----------
-
 # MAGIC %run ../SETUP/_pyspark_clean_up
 
 # COMMAND ----------

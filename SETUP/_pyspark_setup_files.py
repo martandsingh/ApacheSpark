@@ -9,9 +9,7 @@
 
 # COMMAND ----------
 
-print('loading...')
-DA = dbutils.widgets.get("CANCER_CSV_PATH")
-print(DA)
+
 
 # COMMAND ----------
 
@@ -24,7 +22,10 @@ unece_file = dbutils.widgets.get("DBFS_DATASET_LOCATION")+dbutils.widgets.get("U
 used_car_file=dbutils.widgets.get("DBFS_DATASET_LOCATION")+dbutils.widgets.get("USED_CAR_FILE_NAME")
 mall_customer_file=dbutils.widgets.get("DBFS_DATASET_LOCATION")+dbutils.widgets.get("MALL_CUSTOMER_FILE_NAME")
 house_price_file=dbutils.widgets.get("DBFS_DATASET_LOCATION")+dbutils.widgets.get("HOUSE_PRICE_FILE")
-
+game_stream_file = dbutils.widgets.get("DBFS_DATASET_LOCATION")+dbutils.widgets.get("GAME_STREAM_FILE")
+order_list_file = dbutils.widgets.get("DBFS_DATASET_LOCATION")+'/sales/'+dbutils.widgets.get("ORDER_LIST_FILE")
+order_details_file = dbutils.widgets.get("DBFS_DATASET_LOCATION")+'/sales/'+dbutils.widgets.get("ORDER_DETAIL_FILE")
+sales_target_file = dbutils.widgets.get("DBFS_DATASET_LOCATION")+'/sales/'+dbutils.widgets.get("SALES_TARGET_FILE")
 print(cancer_file)
 print(unece_file)
 print(used_car_file)
@@ -45,6 +46,14 @@ dbutils.fs.cp(dbutils.widgets.get("USED_CAR_JSON_PATH"), used_car_file)
 dbutils.fs.cp(dbutils.widgets.get("MALL_CUSTOMER_PATH"), mall_customer_file)
 
 dbutils.fs.cp(dbutils.widgets.get("HOUSE_PRICE_PATH"), house_price_file)
+
+dbutils.fs.cp(dbutils.widgets.get("GAME_STREAM_PATH"), game_stream_file)
+
+dbutils.fs.cp(dbutils.widgets.get("ORDER_LIST_PATH"), order_list_file)
+
+dbutils.fs.cp(dbutils.widgets.get("ORDER_DETAIL_PATH"), order_details_file)
+
+dbutils.fs.cp(dbutils.widgets.get("SALES_TARGET_PATH"), sales_target_file)
 
 
 # COMMAND ----------

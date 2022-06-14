@@ -275,6 +275,31 @@ display(df_categorized_expr)
 
 # COMMAND ----------
 
+# MAGIC %md
+# MAGIC ### Chaining
+# MAGIC In our examples we apply different kind of operations in different cell, but apache spark allows you to chain multiple statements.
+# MAGIC e.g. df.operation1.operation2.operation3.....
+# MAGIC 
+# MAGIC __Lets do following operations on our dataset:__
+# MAGIC 1. delete column description, manufacturer & adtitle
+# MAGIC 1. update column displacement, remove cc from values. e.g. 800cc -> 800
+# MAGIC 1. create a new column price_in_k = price/1000. it will proce price in 1000s.
+# MAGIC 1. select only body_type, brand_name, color, displacement, price_in_k
+
+# COMMAND ----------
+
+from pyspark.sql.functions import regexp_replace, col
+
+df_processed = df_raw\
+    .withColumn("displacement", regexp_replace(col("displacement"), "cc", ""))\
+    .withColumn("price_in_k", col("price")/1000)\
+    .drop("description", "manufacturer", "adtitle")\
+    .select("body_type", "brand_name", "color", "displacement", "price_in_k")
+
+display(df_processed)
+
+# COMMAND ----------
+
 # MAGIC %run ../SETUP/_pyspark_clean_up
 
 # COMMAND ----------

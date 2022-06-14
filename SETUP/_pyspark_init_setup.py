@@ -14,8 +14,21 @@ MALL_CUSTOMER_PATH='https://raw.githubusercontent.com/martandsingh/datasets/mast
 DBFS_PARQUET_FILE = '/FileStore/datasets/USED_CAR_PARQUET/'
 HOUSE_PRICE_FILE = 'missing_val_dataset.csv'
 HOUSE_PRICE_PATH = 'https://raw.githubusercontent.com/martandsingh/datasets/master/' + HOUSE_PRICE_FILE
-
+GAME_STREAM_FILE = 'steam-200k.csv'
+GAME_STREAM_PATH = 'https://raw.githubusercontent.com/martandsingh/datasets/master/' + GAME_STREAM_FILE
+ORDER_DETAIL_FILE = 'orderdetails.csv'
+ORDER_DETAIL_PATH = 'https://raw.githubusercontent.com/martandsingh/datasets/master/Sales-Order/'+ORDER_DETAIL_FILE
+ORDER_LIST_FILE = 'orderlist.csv'
+ORDER_LIST_PATH = 'https://raw.githubusercontent.com/martandsingh/datasets/master/Sales-Order/' + ORDER_LIST_FILE
+SALES_TARGET_FILE = 'salestarget.csv'
+SALES_TARGET_PATH = 'https://raw.githubusercontent.com/martandsingh/datasets/master/Sales-Order/'+SALES_TARGET_FILE
 DA = {
+    "ORDER_DETAIL_FILE": ORDER_DETAIL_FILE,
+    "ORDER_DETAIL_PATH": ORDER_DETAIL_PATH,
+    "ORDER_LIST_FILE":ORDER_LIST_FILE,
+    "ORDER_LIST_PATH":ORDER_LIST_PATH,
+    "SALES_TARGET_FILE": SALES_TARGET_FILE,
+    "SALES_TARGET_PATH": SALES_TARGET_PATH,
     "CANCER_FILE_NAME": CANCER_FILE_NAME,
     "UNECE_FILE_NAME": UNECE_FILE_NAME,
     "USED_CAR_FILE_NAME": USED_CAR_FILE_NAME,
@@ -27,7 +40,9 @@ DA = {
     "MALL_CUSTOMER_FILE_NAME": MALL_CUSTOMER_FILE_NAME,
     "MALL_CUSTOMER_PATH": MALL_CUSTOMER_PATH,
     "HOUSE_PRICE_FILE": HOUSE_PRICE_FILE,
-    "HOUSE_PRICE_PATH": HOUSE_PRICE_PATH
+    "HOUSE_PRICE_PATH": HOUSE_PRICE_PATH,
+    "GAME_STREAM_FILE": GAME_STREAM_FILE,
+    "GAME_STREAM_PATH": GAME_STREAM_PATH
 }
 
 

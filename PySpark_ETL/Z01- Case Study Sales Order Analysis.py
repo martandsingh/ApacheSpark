@@ -1,7 +1,41 @@
 # Databricks notebook source
 # MAGIC %md
-# MAGIC ### Case Study
-# MAGIC Order-Sales dataset. We will conclude:
+# MAGIC ### Case Study - Sales Order Analysis
+# MAGIC 
+# MAGIC ![SALES_ORDER](https://raw.githubusercontent.com/martandsingh/images/master/case_study_1.jpg)
+# MAGIC 
+# MAGIC We have Order-Sales dataset. It includes three dataset:
+# MAGIC 
+# MAGIC __Order List - it contains the list of all the order with amount, city, state.__
+# MAGIC 
+# MAGIC Order List
+# MAGIC * Order ID: string (nullable = true)
+# MAGIC * Order Date: string (nullable = true)
+# MAGIC * CustomerName: string (nullable = true)
+# MAGIC * State: string (nullable = true)
+# MAGIC * City: string (nullable = true)
+# MAGIC 
+# MAGIC 
+# MAGIC __Order Details - detail of the order. Order list has 1-to-many relationship with this dataset.__
+# MAGIC 
+# MAGIC Order Details
+# MAGIC * Order ID: string (nullable = true)
+# MAGIC * Amount: string (nullable = true)
+# MAGIC * Profit: string (nullable = true)
+# MAGIC * Quantity: string (nullable = true)
+# MAGIC * Category: string (nullable = true)
+# MAGIC * Sub-Category: string (nullable = true)
+# MAGIC 
+# MAGIC 
+# MAGIC __Sales Target - This contains the monthly sales target of product category.__
+# MAGIC 
+# MAGIC Sales Target
+# MAGIC * Month of Order Date: string (nullable = true)
+# MAGIC * Category: string (nullable = true)
+# MAGIC * Target: string (nullable = true)
+# MAGIC  
+# MAGIC  
+# MAGIC __We will try to answer following question asked by our business user:__
 # MAGIC 1. Top 10 most selling categories & sub-categories (based on number of orders).
 # MAGIC 1. Which order has the highest & lowest profit.
 # MAGIC 1. Top 10 states & cities with highest total bill amount

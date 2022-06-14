@@ -1,5 +1,15 @@
 # Databricks notebook source
+# MAGIC %md
+# MAGIC ### Group  & Aggregation
+# MAGIC Similar to SQL GROUP BY clause, PySpark groupBy() function is used to collect the identical data into groups on DataFrame and perform aggregate functions on the grouped data.
+# MAGIC 
+# MAGIC PYSPARK AGG is an aggregate function that is functionality provided in PySpark that is used for operations. The aggregate operation operates on the data frame of a PySpark and generates the result for the same. It operates on a group of rows and the return value is then calculated back for every group.
+# MAGIC 
+# MAGIC ![GROUPING](https://raw.githubusercontent.com/martandsingh/images/master/grouping.png)
 
+# COMMAND ----------
+
+# MAGIC %run ../SETUP/_pyspark_init_setup
 
 # COMMAND ----------
 
@@ -57,4 +67,4 @@ display(df_agg)
 
 # COMMAND ----------
 
-
+# MAGIC %run ../SETUP/_pyspark_clean_up

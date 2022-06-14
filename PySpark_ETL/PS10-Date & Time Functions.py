@@ -1,4 +1,16 @@
 # Databricks notebook source
+# MAGIC %md
+# MAGIC ### Date Time Functions
+# MAGIC Date is an important data type when it comes to reporting. In most of the time, reports are arranged based on date, month, year or a particular amount of time. To answer all those questions we will see how can we use date & time in pyspark.
+# MAGIC 
+# MAGIC ![DATETIME](https://raw.githubusercontent.com/martandsingh/images/master/datetime.jpg)
+
+# COMMAND ----------
+
+# MAGIC %run ../SETUP/_pyspark_init_setup
+
+# COMMAND ----------
+
 df = spark.read.option("header", "true").csv("/FileStore/datasets/sales/orderlist.csv")
 display(df)
 
@@ -65,4 +77,4 @@ display(df_trans)
 
 # COMMAND ----------
 
-
+# MAGIC %run ../SETUP/_pyspark_clean_up

@@ -1,4 +1,15 @@
 # Databricks notebook source
+# MAGIC %md
+# MAGIC ### String Functions
+# MAGIC 
+# MAGIC In this demo we will learn basic string functions which we use in our daily life projects.
+
+# COMMAND ----------
+
+# MAGIC %run ../SETUP/_pyspark_init_setup
+
+# COMMAND ----------
+
 df = spark.read.option("header", "true").csv("/FileStore/datasets/sales/orderlist.csv")
 display(df)
 
@@ -76,4 +87,4 @@ display(df_trans)
 
 # COMMAND ----------
 
-
+# MAGIC %run ../SETUP/_pyspark_clean_up

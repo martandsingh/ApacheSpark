@@ -1,6 +1,16 @@
 # Databricks notebook source
 # MAGIC %md
 # MAGIC 
+# MAGIC ### What are the joins?
+# MAGIC PySpark Join is used to combine two DataFrames and by chaining these you can join multiple DataFrames. In real life projects, you will be having more than one dataset or table (normalized data). To calculate or get final data sometime you may need to join different datasets.
+# MAGIC 
+# MAGIC There are many types of joins are available, but we will discuss only most common table join types:
+# MAGIC 1. Inner join - returns record which are common in both the tables.
+# MAGIC 1. Left outer join - common records + unmatched records from left table (left side of join clause)
+# MAGIC 1. Right outer join - common records + unmatched records from right table
+# MAGIC 1. Cross join - Cartesian product of two tables. It will create MxN records (M - no of records in left table, N - no of records in right side table).
+# MAGIC 1. Full outer join - all the records from both the tables except the common records.
+# MAGIC 
 # MAGIC ![JOINS](https://raw.githubusercontent.com/martandsingh/images/master/joins.jpg)
 
 # COMMAND ----------
@@ -44,10 +54,20 @@ display(df_3)
 
 # COMMAND ----------
 
+# MAGIC %md
+# MAGIC ### INNER JOIN
+
+# COMMAND ----------
+
 # INNER JOIN
 # This join will give only matching records. It will return only the records which are present on both the table.
 df_inner = df_1.join(df_2, df_1["id"]==df_2["id"], "inner")
 display(df_inner)
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC ### LEFT OUTER JOIN
 
 # COMMAND ----------
 
@@ -58,6 +78,11 @@ display(df_left)
 
 # COMMAND ----------
 
+# MAGIC %md
+# MAGIC ### RIGHT OUTER JOIN
+
+# COMMAND ----------
+
 # RIGHT JOIN
 # It will return only the records which are present on both the table and all non-matching records from right table.
 df_right = df_1.join(df_3, df_1["id"]==df_3["id"], "right")
@@ -65,9 +90,19 @@ display(df_right)
 
 # COMMAND ----------
 
+# MAGIC %md
+# MAGIC ### FULL OUTER JOIN
+
+# COMMAND ----------
+
 # FULL OUTER JOIN
 df_full = df_1.join(df_3, df_1["id"]==df_3["id"], "full")
 display(df_full)
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC ### CROSS JOIN
 
 # COMMAND ----------
 
@@ -79,6 +114,8 @@ display(df_cross)
 
 # MAGIC %md
 # MAGIC ### Example
+# MAGIC 
+# MAGIC Let's see an example using our sales order dataset.
 
 # COMMAND ----------
 

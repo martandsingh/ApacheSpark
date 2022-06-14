@@ -22,11 +22,22 @@ df_st = spark.read.option("header", "true").csv("/FileStore/datasets/sales/sales
 # COMMAND ----------
 
 # MAGIC %md
+# MAGIC #### Check Schema
+
+# COMMAND ----------
+
+df_ol.printSchema()
+df_od.printSchema()
+df_st.printSchema()
+
+# COMMAND ----------
+
+# MAGIC %md
 # MAGIC ####  Top 10 most selling categories & sub-categories.
 
 # COMMAND ----------
 
-from pyspark.sql.functions import col
+from pyspark.sql.functions import col, lit
 
 # COMMAND ----------
 
@@ -45,16 +56,25 @@ display(df_most_selling_cat)
 
 # COMMAND ----------
 
-# to 
-
-# COMMAND ----------
-
-df_profit= df_od\
+df_order_profit= df_od\
             .withColumn("Profit_Numeric", col('Profit').cast("decimal") )\
             .groupBy("Order ID")\
             .sum("Profit_Numeric").withColumnRenamed("sum(Profit_Numeric)", "total_profit")\
-            .selectExpr("Max(total_profit) AS max_total_profit", "Min(total_profit) AS min_total_profit")
-display(df_profit)
+
+lowest = df_order_profit\
+        .withColumn("Type", lit("Lowest"))\
+        .orderBy("total_profit")\
+        .limit(1)\
+      
+
+highest= df_order_profit\
+         .withColumn("Type", lit("Highest"))\
+         .orderBy(col("total_profit").desc())\
+         .limit(1)\
+         
+
+df_profit_stats =lowest.union(highest)
+display(df_profit_stats)
 
 # COMMAND ----------
 

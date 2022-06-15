@@ -18,7 +18,9 @@
 # MAGIC In Spark, one should carefully choose the number of partitions depending on the cluster design and application requirements. The best technique to determine the number of spark partitions in an RDD is to multiply the number of cores in the cluster with the number of partitions.
 # MAGIC 
 # MAGIC ### How do I create a partition in Spark?
-# MAGIC In Spark, you can create partitions in two ways - 
+# MAGIC In Spark, you can create partitions in two ways -
+# MAGIC 1. Repartition - used to increase and decrease the partitions. Results in more or less equal sized partitions. Since a full shuffle takes place, repartition is less performant than coalesce. Repartition always involves a shuffle.
+# MAGIC 1. Coalesce - used to decrease the partition. It creates unequal partitions. Faster than repartition but query performance an be slower. Coalesce doesn’t involve a full shuffle.
 # MAGIC 
 # MAGIC By invoking partitionBy method on an RDD, you can provide an explicit partitioner,
 
@@ -114,9 +116,57 @@ from pyspark.sql.functions import spark_partition_id
 
 # COMMAND ----------
 
+# Add a new column which include partition id. Count total number of record in each partition. It is recommended to have almost equal number of records in ech partition.
+
 display( df_game.withColumn("partitionId", spark_partition_id()).groupBy("partitionId").count().orderBy("count"))
 
 
 # COMMAND ----------
 
+# repartition() is used to increase or decrease the RDD, DataFrame, Dataset partitions
+# If we want to reduce or increade the paritition size we can use it. 
+df_repart = df_game.repartition(40)
+display(df_repart.limit(10))
 
+# COMMAND ----------
+
+df_repart.rdd.getNumPartitions() #  40 partitions as we did
+
+# COMMAND ----------
+
+# we can also increase partition
+df_repart2 = df_game.repartition(80)
+display(df_repart2.limit(10))
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC ### coalesce()
+# MAGIC It is only used to reduce the partition. This is optimized or improved version of repartition() where the movement of the data across the partitions is lower using coalesce.
+
+# COMMAND ----------
+
+df_col2 = df_game.coalesce(10)
+display(df_col2)
+
+# COMMAND ----------
+
+df_col.rdd.getNumPartitions()#  10 partitions as we did
+
+# COMMAND ----------
+
+
+
+# COMMAND ----------
+
+# if you will try to increase the partition using coalesce, it will throw error.
+df_col3 = df_col.coalesce(1000)
+display(df_col3)
+
+# COMMAND ----------
+
+df_col3.rdd.getNumPartitions() #  332 partitions which is the original value. we cannot increase it
+
+# COMMAND ----------
+
+# MAGIC %run ../SETUP/_pyspark_clean_up

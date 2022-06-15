@@ -22,18 +22,18 @@ from pyspark.sql.functions import col
 
 # COMMAND ----------
 
-# Group by body type
+# Group by body type. Query will writted body_type and total count for that particular body type
 df_type = df.groupBy("body_type").count().orderBy(col("count").desc())
 display(df_type)
 
 # COMMAND ----------
 
-# Grouping using multiple columns
-display(df.groupBy("body_type", "brand_name").count().orderBy(col("count").desc()))
+# Grouping using multiple columns. Below query will group your data with body_type & brand_name. e.g. How many suzuki hatchback are there?
+display(df.groupBy("brand_name", "body_type" ).count().orderBy(col("count").desc()))
 
 # COMMAND ----------
 
-# Average price of each brand name
+# Average price of each brand name. Get the average price for each brand name
 df_avgPrice = df.groupBy("brand_name").mean("price").orderBy("avg(price)")
 display(df_avgPrice)
 

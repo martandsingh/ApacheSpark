@@ -1,10 +1,6 @@
 # Databricks notebook source
-
-
-# COMMAND ----------
-
 # MAGIC %md
-# MAGIC ### In this notebook we will see:
+# MAGIC ### JSON Handling
 # MAGIC 1. How to read simple & nested JSON. 
 # MAGIC 2. How to create new columns using nested json
 # MAGIC 

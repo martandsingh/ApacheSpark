@@ -4,6 +4,9 @@ This course include multiple sections. We are mainly focusing on Databricks Data
 1. Spark SQL ETL
 2. Pyspark ETL
 
+### DATASETS
+All the datasets used in the tutorials are available at: https://github.com/martandsingh/datasets
+
 ### Spark SQL
 This course is the first installment of databricks data engineering course. In this course you will learn basic SQL concept which include:
 1. Create, Select, Update, Delete tables

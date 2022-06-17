@@ -72,10 +72,6 @@
 
 # COMMAND ----------
 
-# MAGIC %run ../SETUP/_clean_up
-
-# COMMAND ----------
-
 # MAGIC %sql
 # MAGIC SELECT
 # MAGIC   E.firstname, E.lastname, D.dept_name AS department

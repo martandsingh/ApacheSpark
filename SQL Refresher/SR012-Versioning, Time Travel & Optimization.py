@@ -161,6 +161,12 @@ display(spark.read.format("delta").load('dbfs:/user/hive/warehouse/db_demo.db/ga
 # COMMAND ----------
 
 # MAGIC %sql 
+# MAGIC -- You can use timestamp also to access older version of data
+# MAGIC SELECT * FROM DB_DEMO.game_stats TIMESTAMP AS OF "2022-06-17 07:40:14.000+0000"
+
+# COMMAND ----------
+
+# MAGIC %sql 
 # MAGIC -- This will give you the latest version with non-zero ratings 
 # MAGIC SELECT * FROM DB_DEMO.game_stats
 

@@ -56,5 +56,9 @@ email: martandsays@gmail.com
 ### SETUP folder
 you will see initial_setup & clean_up notebooks called in every notebooks. It is mandatory to run both the scripts in defined order. initial script will create all the mandatory tables & database for the demo. After you finish your notebook, execute clean up notebook, it will clean all the db objects.
 
+pyspark_init_setup - this notebook will copy dataset from my github repo to dbfs. It will also generate used car parquet dataset. All the datasets will be avalable at
+
+**/FileStore/datasets**
+
 
 ![Databricks_Logo](https://user-images.githubusercontent.com/32331579/171388196-c06e0548-361e-448e-b158-2fa0a17fee6a.jpg)

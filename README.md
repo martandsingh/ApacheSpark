@@ -11,6 +11,7 @@ All the datasets used in the tutorials are available at: https://github.com/mart
 
 ### HOW TO USE?
 follow below article to learn how to clone this repository to your databricks workspace.
+
 https://www.linkedin.com/pulse/databricks-clone-github-repo-martand-singh/
 
 ### Spark SQL

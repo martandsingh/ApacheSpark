@@ -21,10 +21,10 @@ This course is the first installment of databricks data engineering course. In t
 1. Filtering data
 1. Group by & aggregation
 1. Ordering
-1. SQL joins
+1. [SQL joins](https://www.scaler.com/topics/sql/joins-in-sql/)
 1. Common table expression (CTE)
 1. External tables
-1.  Sub queries
+1. [Sub queries](https://www.geeksforgeeks.org/sql-subquery/)
 1. Views & temp views
 1. UNION, INTERSECT, EXCEPT keywords
 1. Versioning, time travel & optimization
